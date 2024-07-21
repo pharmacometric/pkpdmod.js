@@ -23,7 +23,11 @@ class PKPDmod {
             o = t.getElementsByTagName(e)[0];
         i.src = l, o.parentNode.insertBefore(i, o)
     }
-    setCId({t,w = 600, h = 450}) {
+    setCId({
+        t,
+        w = 600,
+        h = 450
+    }) {
         this.cID = t, this.contw = w, this.conth = h, this.setDim()
     }
     drwBox({
@@ -37,10 +41,11 @@ class PKPDmod {
         linewidth: c = 5,
         color2: n = "red",
         text1: a = "DEPOT",
-		text2: jn = ""
+        text2: jn = "",
+        coltxt: rr = "red"
     }) {
         var r = document.getElementById(t).getContext("2d");
-        r.beginPath(), r.moveTo(e + h, l), r.arcTo(e + i, l, e + i, l + h, h), r.arcTo(e + i, l + o, e + i - h, l + o, h), r.arcTo(e, l + o, e, l + o - h, h), r.arcTo(e, l, e + h, l, h), r.closePath(), r.lineWidth = c, r.fillStyle = n, r.fill(), r.strokeStyle = s, r.stroke(), r.font = this.stytext, r.fillStyle = s, r.textAlign = this.txtloc, r.textBaseline = "middle", r.fillText(a, e + i / 2, l + i / 2), r.fillText(jn, e + i / 2, 20 +l + i / 2)
+        r.beginPath(), r.moveTo(e + h, l), r.arcTo(e + i, l, e + i, l + h, h), r.arcTo(e + i, l + o, e + i - h, l + o, h), r.arcTo(e, l + o, e, l + o - h, h), r.arcTo(e, l, e + h, l, h), r.closePath(), r.lineWidth = c, r.fillStyle = n, r.fill(), r.strokeStyle = s, r.stroke(), r.font = this.stytext, r.fillStyle = rr, r.textAlign = this.txtloc, r.textBaseline = "middle", r.fillText(a, e + i / 2, l + i / 2), r.fillText(jn, e + i / 2, 20 + l + i / 2)
     }
 
     drwcBox({
@@ -51,8 +56,9 @@ class PKPDmod {
         lw = 5,
         bg = "pink",
         border = "black",
+        coltxt: rr = "green",
         txt = "",
-		txt2 = ""
+        txt2 = ""
     }) {
         var canvas = document.getElementById(cID);
         var ctx = canvas.getContext("2d");
@@ -71,53 +77,58 @@ class PKPDmod {
         ctx.font = this.stytext;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillStyle = border;
+        ctx.fillStyle = rr;
         ctx.fillText(txt, x + radius, y + radius);
-		ctx.fillText(txt2, x + radius, 20 + y + radius)
+        ctx.fillText(txt2, x + radius, 20 + y + radius)
+        ctx.fillStyle = border;
     }
-	drwLineST({
+    drwLineST({
         cID: t,
         x: e,
         y: l,
-		deg: dd,
+        deg: dd,
         length: i,
         lc: o,
         ahfc: hg = "blue",
         topstr: a = "DOSE",
         hpos: r = "left",
-		endy: ey = 100,
-		coltxt: rr = "green",
-		delaybg: db = "gray"
+        endy: ey = 100,
+        coltxt: rr = "green",
+        delaybg: db = "gray",
+		fixx: fx = 0,
+		fixy: fy = 0
     }) {
-		var ctx1 = document.getElementById(t).getContext("2d");
-        (ctx1.fillStyle = rr), (ctx1.font = this.stytext), (ctx1.textAlign = this.txtloc), ctx1.fillText(a, e, l),ctx1.fillStyle=o;
-		l += 10
-			
-			let arrwidth  = 12;
-			
-			// Move to starting point of arrow
-			ctx1.translate(e,l);
+        var ctx1 = document.getElementById(t).getContext("2d");
+        (ctx1.fillStyle = rr), (ctx1.font = this.stytext), (ctx1.textAlign = this.txtloc), ctx1.fillText(a, e, l), ctx1.fillStyle = o;
+        l += 10
 
-			// Rotate canvas by 75 degrees
-			ctx1.rotate(dd * Math.PI / 180);
+        let arrwidth = 12;
 
-			// Draw arrow line
-			ctx1.fillRect(0, 0, i, 2);
+        // Move to starting point of arrow
+        ctx1.translate(e, l);
 
-			// Draw arrowhead
-			ctx1.beginPath();
-			ctx1.moveTo(i, -arrwidth);
-			ctx1.lineTo(i, arrwidth);
-			ctx1.lineTo(i+13, 0);
-			ctx1.closePath();
-			ctx1.fillStyle = hg;// Set arrow color
-			ctx1.fill(); 
-			ctx1.restore();
-			ctx1.setTransform(1, 0, 0, 1, 0, 0);
-			// Draw the blue square at the midpoint with a black border
-		var midX = ((e + i)/2)+5
-		var midY = (l + i)/2
-		var squareSize = 50;
+        // Rotate canvas by 75 degrees
+        ctx1.rotate(dd * Math.PI / 180);
+
+        // Draw arrow line
+        ctx1.fillRect(0, 0, i, 2);
+
+        // Draw arrowhead
+        ctx1.beginPath();
+        ctx1.moveTo(i, -arrwidth);
+        ctx1.lineTo(i, arrwidth);
+        ctx1.lineTo(i + 13, 0);
+        ctx1.closePath();
+        ctx1.fillStyle = hg; // Set arrow color
+        ctx1.fill();
+        ctx1.restore();
+        ctx1.setTransform(1, 0, 0, 1, 0, 0);
+        // Draw the blue square at the midpoint with a black border
+        var midX = ((e + i) / 2) + 5
+		if(fx) midX = fx;
+        var midY = (l + i) / 2;
+		if(fy) midY = fy;
+        var squareSize = 50;
         var squareSize = 15;
         ctx1.fillStyle = db;
         ctx1.strokeStyle = hg;
@@ -128,10 +139,10 @@ class PKPDmod {
         // Draw the text "ALAGA" to the right of the square
         var text = "D2";
         ctx1.fillStyle = rr;
-		ctx1.textAlign = "right"
+        ctx1.textAlign = "right"
         ctx1.fillText(text, midX + squareSize / 2 + 30, midY + 1);
-		ctx1.restore();	
-			
+        ctx1.restore();
+
     }
     drwLineTB({
         cID: t,
@@ -145,21 +156,21 @@ class PKPDmod {
         txtmid: n = "K10",
         topstr: a = "DOSE, at t = ALAG",
         hpos: r = "left",
-		coltxt: rr = "red"
+        coltxt: rr = "red"
     }) {
         var d = document.getElementById(t).getContext("2d");
         let x = "left" != r ? e - 7 * n.length : e + 7 * n.length;
-        if (n.length > 0 && (d.fillStyle = rr, d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(n, x, l + i / 2),d.restore()), a.length > 0) {
+        if (n.length > 0 && (d.fillStyle = rr, d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(n, x, l + i / 2), d.restore()), a.length > 0) {
             var _ = l + 10;
-            l += 17, d.fillStyle = rr, d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(a, e, _),d.restore()
+            l += 17, d.fillStyle = rr, d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(a, e, _), d.restore()
         }
         d.beginPath(), d.moveTo(e, l), d.lineTo(e, l + i), d.lineWidth = 2, d.strokeStyle = o, d.stroke();
         var f = e,
             g = l + i,
             b = e,
             p = l;
-        "bottom" == c && (d.beginPath(), d.moveTo(f, g), d.lineTo(f + 8, g - 8), d.lineTo(f - 8, g - 8), d.closePath(), d.fillStyle = h, d.fill(), d.strokeStyle = s, d.stroke()), 
-		"top" == c && (d.beginPath(), d.moveTo(b, p), d.lineTo(b + 8, p + 8), d.lineTo(b - 8, p + 8), d.closePath(), d.fillStyle = h, d.fill(), d.strokeStyle = s, d.stroke())
+        "bottom" == c && (d.beginPath(), d.moveTo(f, g), d.lineTo(f + 8, g - 8), d.lineTo(f - 8, g - 8), d.closePath(), d.fillStyle = h, d.fill(), d.strokeStyle = s, d.stroke()),
+            "top" == c && (d.beginPath(), d.moveTo(b, p), d.lineTo(b + 8, p + 8), d.lineTo(b - 8, p + 8), d.closePath(), d.fillStyle = h, d.fill(), d.strokeStyle = s, d.stroke())
     }
     drwLineLR({
         cID: t,
@@ -173,22 +184,22 @@ class PKPDmod {
         txtmid: n = "CLL",
         txttop: a = "",
         lw: r = 2,
-		coltxt: rr = "purple"
+        coltxt: rr = "purple"
     }) {
-    var d = document.getElementById(t).getContext("2d");
-    if (((d.lineWidth = r), a.length > 0)) {
-        var x = e;
-        (e += 7 * a.length), (d.fillStyle = rr), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(a, x, l),d.restore();
-    }
-    d.beginPath(), !0 == h && d.setLineDash([5, 5]), d.moveTo(e, l), d.lineTo(i + e, l), d.stroke(), d.setLineDash([0, 0]);
-    var _ = 10,
-        _ = 8;
-    ("right" == s) | ("both" == s) && (d.beginPath(), d.moveTo(i + e, l), d.lineTo(i + e - _, l - _), d.lineTo(i + e - _, l + _), d.closePath(), (d.fillStyle = o ? "white" : "black"), d.fill(), d.stroke()),
+        var d = document.getElementById(t).getContext("2d");
+        if (((d.lineWidth = r), a.length > 0)) {
+            var x = e;
+            (e += 7 * a.length), (d.fillStyle = rr), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(a, x, l), d.restore();
+        }
+        d.beginPath(), !0 == h && d.setLineDash([5, 5]), d.moveTo(e, l), d.lineTo(i + e, l), d.stroke(), d.setLineDash([0, 0]);
+        var _ = 10,
+            _ = 8;
+        ("right" == s) | ("both" == s) && (d.beginPath(), d.moveTo(i + e, l), d.lineTo(i + e - _, l - _), d.lineTo(i + e - _, l + _), d.closePath(), (d.fillStyle = o ? "white" : "black"), d.fill(), d.stroke()),
         ("left" == s) | ("both" == s) && (d.beginPath(), d.moveTo(e, l), d.lineTo(e + _, l - _), d.lineTo(e + _, l + _), d.closePath(), (d.fillStyle = o ? "white" : "black"), d.fill(), d.stroke()),
-        n.length > 0 && ((d.fillStyle = rr), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(n, e + i / 2, "up" == c ? l - 10 : l + 15),d.restore());
-}
+        n.length > 0 && ((d.fillStyle = rr), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(n, e + i / 2, "up" == c ? l - 10 : l + 15), d.restore());
+    }
 
-	
+
     lib$1cmt({
         depot = true,
         bolus = true,
@@ -196,39 +207,139 @@ class PKPDmod {
         circle = true,
         depottxt = "DEPOT",
         centraltxt = "CENTRAL",
-		depottxt2 = "(V1)",
+        depottxt2 = "(V1)",
         centraltxt2 = "(V2)",
         bgcol = "#f5f5f5",
-        txtcol = "black"
+        txtcol = "orange"
     }) {
-        let cushion = 5; let boxw = 150; let boxh = 150; let linw = 120; let radiz = 6; let depotx = cushion; let depoty = cushion;
+        let cushion = 5;
+        let boxw = 150;
+        let boxh = 150;
+        let linw = 120;
+        let radiz = 6;
+        let depotx = cushion;
+        let depoty = cushion;
         if (depot) {
-            this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: cushion, length: linw, lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "", topstr: labdose }),
+            this.drwLineTB({
+                    cID: this.cID,
+                    x: depotx + (boxw / 2),
+                    y: cushion,
+                    length: linw,
+                    lc: "black",
+                    ahfc: "white",
+                    ahbc: "black",
+                    arp: "bottom",
+                    txtmid: "",
+                    topstr: labdose,
+					coltxt: txtcol
+                }),
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
             if (circle) {
-               this.drwcBox({ x: cushion, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: depottxt, txt2: "V2",txt2: depottxt2 }) 
+                this.drwcBox({
+                    x: cushion,
+                    y: depoty,
+                    radius: boxw / 2,
+                    lw: 4,
+                    bg: bgcol,
+                    border: txtcol,
+                    txt: depottxt,
+                    txt2: "V2",
+                    txt2: depottxt2,
+					coltxt: txtcol
+                })
             } else {
-               this.drwBox({ cID: this.cID, x: cushion, y: depoty, width: boxw, height: boxh, radius: radiz, color1: txtcol, linewidth: 2, color2: bgcol, text1: depottxt, text2: depottxt2 })
+                this.drwBox({
+                    cID: this.cID,
+                    x: cushion,
+                    y: depoty,
+                    width: boxw,
+                    height: boxh,
+                    radius: radiz,
+                    color1: txtcol,
+                    linewidth: 2,
+                    color2: bgcol,
+                    text1: depottxt,
+                    text2: depottxt2,
+					coltxt: txtcol
+                })
             }
-           this.drwLineLR({ cID: this.cID, x: boxw + cushion, y: 210, open: !1, arp: "right", hpos: "under", dash: !1, l: linw, txtmid: "Ka" })
+            this.drwLineLR({
+                cID: this.cID,
+                x: boxw + cushion,
+                y: 210,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka",
+					coltxt: txtcol
+            })
 
         }
         if (bolus) {
             depoty = cushion + linw + 19;
-            this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: cushion, length: linw, lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "", topstr: labdose })
+            this.drwLineTB({
+                cID: this.cID,
+                x: depotx + (boxw / 2),
+                y: cushion,
+                length: linw,
+                lc: "black",
+                ahfc: "white",
+                ahbc: "black",
+                arp: "bottom",
+                txtmid: "",
+                topstr: labdose,
+					coltxt: txtcol
+            })
         }
         if (circle) {
-            this.drwcBox({ x: depotx, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt, txt2: centraltxt2 })
+            this.drwcBox({
+                x: depotx,
+                y: depoty,
+                radius: boxw / 2,
+                lw: 4,
+                bg: bgcol,
+                border: txtcol,
+                txt: centraltxt,
+                txt2: centraltxt2,
+					coltxt: txtcol
+            })
         } else {
-            this.drwBox({ cID: this.cID, x: depotx, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt, text2: centraltxt2 })
+            this.drwBox({
+                cID: this.cID,
+                x: depotx,
+                y: depoty,
+                width: boxw,
+                height: boxh,
+                radius: radiz,
+                color1: "black",
+                linewidth: 2,
+                color2: bgcol,
+                text1: centraltxt,
+                text2: centraltxt2,
+					coltxt: txtcol
+            })
         }
-        this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: depoty + boxh, length: linw, lc: txtcol, ahfc: "black", ahbc: "black", arp: "bottom", txtmid: "K10", topstr: "" })
+        this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2),
+            y: depoty + boxh,
+            length: linw,
+            lc: txtcol,
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "K10",
+            topstr: "",
+					coltxt: txtcol
+        })
     }
-	
-	
-	
-	lib$2cmt({
+
+
+
+    lib$2cmt({
         depot = true,
         bolus = true,
         labdose = "Dose",
@@ -238,46 +349,183 @@ class PKPDmod {
         bgcol = "#f5f5f5",
         txtcol = "black"
     }) {
-        let cushion = 5; let boxw = 150; let boxh = 150; let linw = 120; let radiz = 6; let depotx = cushion; let depoty = cushion;
-		
-		this.setDim();
+        let cushion = 5;
+        let boxw = 150;
+        let boxh = 150;
+        let linw = 120;
+        let radiz = 6;
+        let depotx = cushion;
+        let depoty = cushion;
+
+        this.setDim();
         if (depot) {
-            this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: cushion, length: linw, lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "", topstr: labdose }),
+            this.drwLineTB({
+                    cID: this.cID,
+                    x: depotx + (boxw / 2),
+                    y: cushion,
+                    length: linw,
+                    lc: "black",
+                    ahfc: "white",
+                    ahbc: "black",
+                    arp: "bottom",
+                    txtmid: "",
+                    topstr: labdose,
+					coltxt: txtcol
+                }),
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
             if (circle) {
-               this.drwcBox({ x: cushion, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: depottxt }) 
+                this.drwcBox({
+                    x: cushion,
+                    y: depoty,
+                    radius: boxw / 2,
+                    lw: 4,
+                    bg: bgcol,
+                    txt: depottxt
+                })
             } else {
-               this.drwBox({ cID: this.cID, x: cushion, y: depoty, width: boxw, height: boxh, radius: radiz, color1: txtcol, linewidth: 2, color2: bgcol, text1: depottxt })
+                this.drwBox({
+                    cID: this.cID,
+                    x: cushion,
+                    y: depoty,
+                    width: boxw,
+                    height: boxh,
+                    radius: radiz,
+                    color1: "black",
+                    linewidth: 2,
+                    color2: bgcol,
+                    text1: depottxt,
+					coltxt: txtcol
+                })
             }
-           this.drwLineLR({ cID: this.cID, x: boxw + cushion, y: 210, open: !1, arp: "right", hpos: "under", dash: !1, l: linw, txtmid: "Ka" })
+            this.drwLineLR({
+                cID: this.cID,
+                x: boxw + cushion,
+                y: 210,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka",
+					coltxt: txtcol
+            })
 
         }
         if (bolus) {
             depoty = cushion + linw + 19;
-            this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: cushion, length: linw, lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "", topstr: labdose })
+			this.drwLineST({
+                cID: this.cID,
+                x: depotx + (boxw / 2) ,
+                y: cushion+5,
+                endy: depotx,
+                length: linw-10,
+                deg: 90,
+                lc: "black",
+                ahfc: "black",
+				coltxt: "red",
+                topstr: "Bolus Dose",
+				fixx: depotx + (boxw / 2) - 1,
+					coltxt: txtcol
+            })
         }
         if (circle) {
-            this.drwcBox({ x: depotx, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt })
+            this.drwcBox({
+                x: depotx,
+                y: depoty,
+                radius: boxw / 2,
+                lw: 4,
+                bg: bgcol,
+                border: txtcol,
+                txt: centraltxt,
+					coltxt: txtcol
+            })
         } else {
-            this.drwBox({ cID: this.cID, x: depotx, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt })
+            this.drwBox({
+                cID: this.cID,
+                x: depotx,
+                y: depoty,
+                width: boxw,
+                height: boxh,
+                radius: radiz,
+                color1: "black",
+                linewidth: 2,
+                color2: bgcol,
+                text1: centraltxt,
+					coltxt: txtcol
+            })
         }
-        this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: depoty + boxh, length: linw, lc: "black", ahfc: "black", ahbc: "black", arp: "bottom", txtmid: "K10", topstr: "" })
-		
-		
-		this.drwLineLR({ cID: this.cID, x: depotx+boxw, y: 200, open: !1, arp: "right", hpos: "up", dash: !1, l: linw, txtmid: "K12" })
-		this.drwLineLR({ cID: this.cID, x: depotx+boxw, y: 230, open: !1, arp: "left", hpos: "under", dash: !1, l: linw, txtmid: "K21" })
-		
-		if (circle) {
-            this.drwcBox({ x: depotx+boxw+linw, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt })
+        this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2),
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "K10",
+            topstr: "",
+					coltxt: txtcol
+        })
+
+
+        this.drwLineLR({
+            cID: this.cID,
+            x: depotx + boxw,
+            y: 200,
+            open: !1,
+            arp: "right",
+            hpos: "up",
+            dash: !1,
+            l: linw,
+            txtmid: "K12",
+					coltxt: txtcol
+        })
+        this.drwLineLR({
+            cID: this.cID,
+            x: depotx + boxw,
+            y: 230,
+            open: !1,
+            arp: "left",
+            hpos: "under",
+            dash: !1,
+            l: linw,
+            txtmid: "K21",
+					coltxt: txtcol
+        })
+
+        if (circle) {
+            this.drwcBox({
+                x: depotx + boxw + linw,
+                y: depoty,
+                radius: boxw / 2,
+                lw: 4,
+                bg: bgcol,
+                border: txtcol,
+                txt: centraltxt,
+					coltxt: txtcol
+            })
         } else {
-            this.drwBox({ cID: this.cID, x: depotx+boxw+linw, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt })
+            this.drwBox({
+                cID: this.cID,
+                x: depotx + boxw + linw,
+                y: depoty,
+                width: boxw,
+                height: boxh,
+                radius: radiz,
+                color1: "black",
+                linewidth: 2,
+                color2: bgcol,
+                text1: centraltxt,
+					coltxt: txtcol
+            })
         }
-		
+
     }
-	
-	
-	lib$3cmt({
+
+
+    lib$3cmt({
         depot = true,
         bolus = true,
         labdose = "Dose",
@@ -287,56 +535,224 @@ class PKPDmod {
         bgcol = "#f5f5f5",
         txtcol = "black"
     }) {
-        let cushion = 5; let boxw = 150; let boxh = 150; let linw = 120; let radiz = 6; let depotx = cushion; let depoty = cushion+boxh-18;
-		
-		this.setDim();
-		
+        let cushion = 5;
+        let boxw = 150;
+        let boxh = 150;
+        let linw = 120;
+        let radiz = 6;
+        let depotx = cushion;
+        let depoty = cushion + boxh - 18;
+
+        this.setDim();
+
         if (depot) {
-            this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: depoty, length: linw, lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "", topstr: labdose }),
+            this.drwLineTB({
+                    cID: this.cID,
+                    x: depotx + (boxw / 2),
+                    y: depoty,
+                    length: linw,
+                    lc: "black",
+                    ahfc: "white",
+                    ahbc: "black",
+                    arp: "bottom",
+                    txtmid: "",
+                    topstr: labdose
+                }),
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
             if (circle) {
-               this.drwcBox({ x: cushion, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: depottxt }) 
+                this.drwcBox({
+                    x: cushion,
+                    y: depoty,
+                    radius: boxw / 2,
+                    lw: 4,
+                    bg: bgcol,
+                    border: txtcol,
+                    txt: depottxt
+                })
             } else {
-               this.drwBox({ cID: this.cID, x: cushion, y: depoty, width: boxw, height: boxh, radius: radiz, color1: txtcol, linewidth: 2, color2: bgcol, text1: depottxt })
+                this.drwBox({
+                    cID: this.cID,
+                    x: cushion,
+                    y: depoty,
+                    width: boxw,
+                    height: boxh,
+                    radius: radiz,
+                    color1: txtcol,
+                    linewidth: 2,
+                    color2: bgcol,
+                    text1: depottxt
+                })
             }
-           this.drwLineLR({ cID: this.cID, x: boxw + cushion, y: depoty + boxh/2, open: !1, arp: "right", hpos: "under", dash: !1, l: linw, txtmid: "Ka" })
+            this.drwLineLR({
+                cID: this.cID,
+                x: boxw + cushion,
+                y: depoty + boxh / 2,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka"
+            })
 
         }
-        
-		
-		
-		if (circle) {
-            this.drwcBox({ x: depotx, y: cushion, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt })
-        } else {
-            this.drwBox({ cID: this.cID, x: depotx, y: cushion, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt })
-        }
-		this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2) - 15, y: cushion + boxh, length: linw, hpos: "right", lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "K31", topstr: "" })
-        this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2) + 15, y: cushion + boxh+1, length: linw, hpos: "left", lc: "black", ahfc: "white", ahbc: "black", arp: "top", txtmid: "K13", topstr: "" })
-        
-		
-		
+
+
+
         if (circle) {
-            this.drwcBox({ x: depotx, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt })
+            this.drwcBox({
+                x: depotx,
+                y: cushion,
+                radius: boxw / 2,
+                lw: 4,
+                bg: bgcol,
+                border: txtcol,
+                txt: centraltxt
+            })
         } else {
-            this.drwBox({ cID: this.cID, x: depotx, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt })
+            this.drwBox({
+                cID: this.cID,
+                x: depotx,
+                y: cushion,
+                width: boxw,
+                height: boxh,
+                radius: radiz,
+                color1: "black",
+                linewidth: 2,
+                color2: bgcol,
+                text1: centraltxt
+            })
         }
-        this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: depoty + boxh, length: linw, lc: "black", ahfc: "black", ahbc: "black", arp: "bottom", txtmid: "K10", topstr: "" })
-		
-		if (bolus) {
+        this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) - 15,
+            y: cushion + boxh,
+            length: linw,
+            hpos: "right",
+            lc: "black",
+            ahfc: "white",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "K31",
+            topstr: ""
+        })
+        this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) + 15,
+            y: cushion + boxh + 1,
+            length: linw,
+            hpos: "left",
+            lc: "black",
+            ahfc: "white",
+            ahbc: "black",
+            arp: "top",
+            txtmid: "K13",
+            topstr: ""
+        })
+
+
+
+        if (circle) {
+            this.drwcBox({
+                x: depotx,
+                y: depoty,
+                radius: boxw / 2,
+                lw: 4,
+                bg: bgcol,
+                border: txtcol,
+                txt: centraltxt
+            })
+        } else {
+            this.drwBox({
+                cID: this.cID,
+                x: depotx,
+                y: depoty,
+                width: boxw,
+                height: boxh,
+                radius: radiz,
+                color1: "black",
+                linewidth: 2,
+                color2: bgcol,
+                text1: centraltxt
+            })
+        }
+        this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2),
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "K10",
+            topstr: ""
+        })
+
+        if (bolus) {
             depoty = cushion + linw + 19;
-            this.drwLineST({ cID: this.cID, x: cushion + 45 +  boxw/2, y: depoty - 100, endy:depotx, length: 258, deg: 55, lc: "black", ahfc: "black", topstr: "Bolus Dose" })
+            this.drwLineST({
+                cID: this.cID,
+                x: cushion + 45 + boxw / 2,
+                y: depoty - 100,
+                endy: depotx,
+                length: 258,
+                deg: 55,
+                lc: "black",
+                ahfc: "black",
+                topstr: "Bolus Dose"
+            })
         }
-		
-		depoty = depoty * 2 - 15
-		this.drwLineLR({ cID: this.cID, x: depotx+boxw+1, y: depoty -15 + boxh/2, open: !1, arp: "right", hpos: "up", dash: !1, l: linw, txtmid: "K21" })
-		this.drwLineLR({ cID: this.cID, x: depotx+boxw+2, y: depoty +15 + boxh/2, open: !1, arp: "left", hpos: "under", dash: !1, l: linw, txtmid: "K12" })
-		
-		if (circle) {
-            this.drwcBox({ x: depotx+boxw+linw+3, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt })
+
+        depoty = depoty * 2 - 15
+        this.drwLineLR({
+            cID: this.cID,
+            x: depotx + boxw + 1,
+            y: depoty - 15 + boxh / 2,
+            open: !1,
+            arp: "right",
+            hpos: "up",
+            dash: !1,
+            l: linw,
+            txtmid: "K21"
+        })
+        this.drwLineLR({
+            cID: this.cID,
+            x: depotx + boxw + 2,
+            y: depoty + 15 + boxh / 2,
+            open: !1,
+            arp: "left",
+            hpos: "under",
+            dash: !1,
+            l: linw,
+            txtmid: "K12"
+        })
+
+        if (circle) {
+            this.drwcBox({
+                x: depotx + boxw + linw + 3,
+                y: depoty,
+                radius: boxw / 2,
+                lw: 4,
+                bg: bgcol,
+                border: txtcol,
+                txt: centraltxt
+            })
         } else {
-            this.drwBox({ cID: this.cID, x: depotx+boxw+linw+3, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt })
+            this.drwBox({
+                cID: this.cID,
+                x: depotx + boxw + linw + 3,
+                y: depoty,
+                width: boxw,
+                height: boxh,
+                radius: radiz,
+                color1: "black",
+                linewidth: 2,
+                color2: bgcol,
+                text1: centraltxt
+            })
         }
-		
+
     }
 }
