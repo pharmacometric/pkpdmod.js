@@ -6,7 +6,7 @@ A lightweight and performant pharmacometric diagram builder for all purposes
 
 ### code 1
 
-```
+```{js}
 const pkpd1 = new PKPDmod("test_container");
 pkpd1.lib$3cmt({
     depot: !0,
