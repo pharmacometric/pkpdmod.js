@@ -25,8 +25,8 @@ const pkpd1 = new PKPDmod("test_container");
 
 ```js
 pkpd1.lib$3cmt({ 
-depot: !0, 
-bolus: 1, 
+depot: true, 
+bolus: true, 
 delay: true, 
 bgcol: "white", 
 txtcol: "red", 
@@ -42,8 +42,8 @@ circle: false })
 
 ```js
 pkpd1.lib$3cmt({ 
-depot: !0, 
-bolus: 1, 
+depot: true, 
+bolus: true, 
 delay: true, 
 bgcol: "white", 
 txtcol: "blue", 
