@@ -624,7 +624,7 @@ class PKPDmod {
                 bg: bgcol,
                 border: "black",
                 txt: peritxt2,
-				txt2: "(V2)",
+				txt2: "(V3)",
                 coltxt: txtcol
             })
         } else {
@@ -742,6 +742,7 @@ class PKPDmod {
                 endy: depotx,
                 length: 258,
                 deg: 55,
+				delay: delay,
                 lc: "black",
                 ahfc: "black",
                 topstr: "Bolus Dose",
