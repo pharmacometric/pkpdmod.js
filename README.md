@@ -24,7 +24,13 @@ const pkpd1 = new PKPDmod("test_container");
 ### code 1
 
 ```js
-pkpd1.lib$3cmt({ depot: !0, bolus: 1, delay: true, bgcol: "white", txtcol: "red", circle: false })
+pkpd1.lib$3cmt({ 
+depot: !0, 
+bolus: 1, 
+delay: true, 
+bgcol: "white", 
+txtcol: "red", 
+circle: false })
 
 ```
 
