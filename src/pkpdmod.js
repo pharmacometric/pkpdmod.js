@@ -96,7 +96,8 @@ class PKPDmod {
         coltxt: rr = "green",
         delaybg: db = "gray",
         fixx: fx = 0,
-        fixy: fy = 0
+        fixy: fy = 0,
+		delay:dl = 0
     }) {
         var ctx1 = document.getElementById(t).getContext("2d");
         (ctx1.fillStyle = rr), (ctx1.font = this.stytext), (ctx1.textAlign = this.txtloc), ctx1.fillText(a, e, l), ctx1.fillStyle = o;
@@ -123,6 +124,8 @@ class PKPDmod {
         ctx1.fill();
         ctx1.restore();
         ctx1.setTransform(1, 0, 0, 1, 0, 0);
+		
+		if(dl){
         // Draw the blue square at the midpoint with a black border
         var midX = ((e + i) / 2) + 5
         if (fx) midX = fx;
@@ -141,6 +144,8 @@ class PKPDmod {
         ctx1.fillStyle = rr;
         ctx1.textAlign = "right"
         ctx1.fillText(text, midX + squareSize / 2 + 30, midY + 1);
+		
+		}
         ctx1.restore();
 
     }
@@ -530,6 +535,7 @@ class PKPDmod {
         bolus = true,
         labdose = "Dose",
         circle = true,
+		delay = 0,
         depottxt = "DEPOT",
         centraltxt = "CENTRAL",
         peritxt1 = "PERI1",
@@ -721,6 +727,7 @@ class PKPDmod {
                 endy: depotx,
                 length: 258 + 28,
                 deg: 55,
+				delay: delay,
                 lc: "black",
                 ahfc: "black",
                 topstr: "Bolus Dose",
