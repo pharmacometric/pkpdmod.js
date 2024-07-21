@@ -11,7 +11,7 @@ pkpd1.lib$3cmt({
     depot: !0,
     bolus: 1,
     bgcol: "white",
-    txtcol: "RED",
+    txtcol: "red",
 	circle: false
 })
 
