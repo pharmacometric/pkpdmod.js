@@ -1,4 +1,4 @@
-# pkpdmod.js (version 1.0.0)
+# pkpdmod.js (version 1.0.1)
 A lightweight and performant pharmacometric diagram builder for all purposes
 
 
