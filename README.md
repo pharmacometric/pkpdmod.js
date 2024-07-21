@@ -1,8 +1,11 @@
 # pkpdmod.js (version 1.0.1)
 A lightweight and performant pharmacometric diagram builder for all purposes
 
+# Project link (when finished)
 
-# example code and output
+ - https://pkmodjs.pharmacometric.com/
+
+# Example code and output
 
 ### Include the script at the top of your HTML file
 
