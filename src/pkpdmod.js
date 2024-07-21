@@ -571,7 +571,7 @@ class PKPDmod {
                     radius: boxw / 2,
                     lw: 4,
                     bg: bgcol,
-                    border: txtcol,
+                    border: "black",
                     txt: depottxt,
 					txt2: "",
                     coltxt: txtcol
@@ -616,7 +616,7 @@ class PKPDmod {
                 radius: boxw / 2,
                 lw: 4,
                 bg: bgcol,
-                border: txtcol,
+                border: "black",
                 txt: peritxt2,
 				txt2: "(V2)",
                 coltxt: txtcol
@@ -675,7 +675,7 @@ class PKPDmod {
                 radius: boxw / 2,
                 lw: 4,
                 bg: bgcol,
-                border: txtcol,
+                border: "black",
                 txt: centraltxt,
 				txt2: "(V2)",
                 coltxt: txtcol
@@ -712,6 +712,22 @@ class PKPDmod {
 
         if (bolus) {
             depoty = cushion + linw + 19;
+			
+			if (circle) {
+			this.drwLineST({
+                cID: this.cID,
+                x: cushion + 45 + boxw / 2,
+                y: depoty - 100,
+                endy: depotx,
+                length: 258 + 28,
+                deg: 55,
+                lc: "black",
+                ahfc: "black",
+                topstr: "Bolus Dose",
+                coltxt: txtcol,
+				fixx:80+cushion + 45 + boxw / 2
+            })	
+			}else{
             this.drwLineST({
                 cID: this.cID,
                 x: cushion + 45 + boxw / 2,
@@ -724,6 +740,9 @@ class PKPDmod {
                 topstr: "Bolus Dose",
                 coltxt: txtcol
             })
+				
+			}
+			
         }
 
         depoty = depoty * 2 - 15
@@ -759,7 +778,7 @@ class PKPDmod {
                 radius: boxw / 2,
                 lw: 4,
                 bg: bgcol,
-                border: txtcol,
+                border: "black",
                 txt: peritxt1,
 				txt2: "(V4)",
                 coltxt: txtcol
