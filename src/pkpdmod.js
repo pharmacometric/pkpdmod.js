@@ -573,6 +573,7 @@ class PKPDmod {
                     bg: bgcol,
                     border: txtcol,
                     txt: depottxt,
+					txt2: "",
                     coltxt: txtcol
                 })
             } else {
@@ -587,6 +588,7 @@ class PKPDmod {
                     linewidth: 2,
                     color2: bgcol,
                     text1: depottxt,
+					text2: "",
                     coltxt: txtcol
                 })
             }
@@ -616,6 +618,7 @@ class PKPDmod {
                 bg: bgcol,
                 border: txtcol,
                 txt: peritxt2,
+				txt2: "(V2)",
                 coltxt: txtcol
             })
         } else {
@@ -630,6 +633,7 @@ class PKPDmod {
                 linewidth: 2,
                 color2: bgcol,
                 text1: peritxt2,
+				text2: "(V3)",
                 coltxt: txtcol
             })
         }
@@ -673,6 +677,7 @@ class PKPDmod {
                 bg: bgcol,
                 border: txtcol,
                 txt: centraltxt,
+				txt2: "(V2)",
                 coltxt: txtcol
             })
         } else {
@@ -687,6 +692,7 @@ class PKPDmod {
                 linewidth: 2,
                 color2: bgcol,
                 text1: centraltxt,
+				text2: "(V2)",
                 coltxt: txtcol
             })
         }
@@ -755,6 +761,7 @@ class PKPDmod {
                 bg: bgcol,
                 border: txtcol,
                 txt: peritxt1,
+				txt2: "(V4)",
                 coltxt: txtcol
             })
         } else {
@@ -769,6 +776,7 @@ class PKPDmod {
                 linewidth: 2,
                 color2: bgcol,
                 text1: peritxt1,
+				text2: "(V4)",
                 coltxt: txtcol
             })
         }
