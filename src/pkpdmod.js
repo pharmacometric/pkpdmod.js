@@ -95,8 +95,8 @@ class PKPDmod {
         endy: ey = 100,
         coltxt: rr = "green",
         delaybg: db = "gray",
-		fixx: fx = 0,
-		fixy: fy = 0
+        fixx: fx = 0,
+        fixy: fy = 0
     }) {
         var ctx1 = document.getElementById(t).getContext("2d");
         (ctx1.fillStyle = rr), (ctx1.font = this.stytext), (ctx1.textAlign = this.txtloc), ctx1.fillText(a, e, l), ctx1.fillStyle = o;
@@ -125,9 +125,9 @@ class PKPDmod {
         ctx1.setTransform(1, 0, 0, 1, 0, 0);
         // Draw the blue square at the midpoint with a black border
         var midX = ((e + i) / 2) + 5
-		if(fx) midX = fx;
+        if (fx) midX = fx;
         var midY = (l + i) / 2;
-		if(fy) midY = fy;
+        if (fy) midY = fy;
         var squareSize = 50;
         var squareSize = 15;
         ctx1.fillStyle = db;
@@ -231,7 +231,7 @@ class PKPDmod {
                     arp: "bottom",
                     txtmid: "",
                     topstr: labdose,
-					coltxt: txtcol
+                    coltxt: txtcol
                 }),
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
@@ -242,11 +242,10 @@ class PKPDmod {
                     radius: boxw / 2,
                     lw: 4,
                     bg: bgcol,
-                    border: txtcol,
                     txt: depottxt,
                     txt2: "V2",
                     txt2: depottxt2,
-					coltxt: txtcol
+                    coltxt: txtcol
                 })
             } else {
                 this.drwBox({
@@ -256,12 +255,12 @@ class PKPDmod {
                     width: boxw,
                     height: boxh,
                     radius: radiz,
-                    color1: txtcol,
+                    color1: "black",
                     linewidth: 2,
                     color2: bgcol,
                     text1: depottxt,
                     text2: depottxt2,
-					coltxt: txtcol
+                    coltxt: txtcol
                 })
             }
             this.drwLineLR({
@@ -274,24 +273,25 @@ class PKPDmod {
                 dash: !1,
                 l: linw,
                 txtmid: "Ka",
-					coltxt: txtcol
+                coltxt: txtcol
             })
 
         }
         if (bolus) {
             depoty = cushion + linw + 19;
-            this.drwLineTB({
+            this.drwLineST({
                 cID: this.cID,
                 x: depotx + (boxw / 2),
-                y: cushion,
-                length: linw,
+                y: cushion + 4,
+                endy: depotx,
+                length: linw - 10,
+                deg: 90,
                 lc: "black",
-                ahfc: "white",
-                ahbc: "black",
-                arp: "bottom",
-                txtmid: "",
-                topstr: labdose,
-					coltxt: txtcol
+                ahfc: "black",
+                coltxt: "red",
+                topstr: "Bolus Dose",
+                fixx: depotx + (boxw / 2) - 1,
+                coltxt: txtcol
             })
         }
         if (circle) {
@@ -301,10 +301,9 @@ class PKPDmod {
                 radius: boxw / 2,
                 lw: 4,
                 bg: bgcol,
-                border: txtcol,
                 txt: centraltxt,
                 txt2: centraltxt2,
-					coltxt: txtcol
+                coltxt: txtcol
             })
         } else {
             this.drwBox({
@@ -319,7 +318,7 @@ class PKPDmod {
                 color2: bgcol,
                 text1: centraltxt,
                 text2: centraltxt2,
-					coltxt: txtcol
+                coltxt: txtcol
             })
         }
         this.drwLineTB({
@@ -327,13 +326,13 @@ class PKPDmod {
             x: depotx + (boxw / 2),
             y: depoty + boxh,
             length: linw,
-            lc: txtcol,
+            lc: "black",
             ahfc: "black",
             ahbc: "black",
             arp: "bottom",
             txtmid: "K10",
             topstr: "",
-					coltxt: txtcol
+            coltxt: txtcol
         })
     }
 
@@ -346,6 +345,7 @@ class PKPDmod {
         circle = true,
         depottxt = "DEPOT",
         centraltxt = "CENTRAL",
+        peritxt1 = "PERI1",
         bgcol = "#f5f5f5",
         txtcol = "black"
     }) {
@@ -370,7 +370,7 @@ class PKPDmod {
                     arp: "bottom",
                     txtmid: "",
                     topstr: labdose,
-					coltxt: txtcol
+                    coltxt: txtcol
                 }),
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
@@ -395,7 +395,7 @@ class PKPDmod {
                     linewidth: 2,
                     color2: bgcol,
                     text1: depottxt,
-					coltxt: txtcol
+                    coltxt: txtcol
                 })
             }
             this.drwLineLR({
@@ -408,25 +408,25 @@ class PKPDmod {
                 dash: !1,
                 l: linw,
                 txtmid: "Ka",
-					coltxt: txtcol
+                coltxt: txtcol
             })
 
         }
         if (bolus) {
             depoty = cushion + linw + 19;
-			this.drwLineST({
+            this.drwLineST({
                 cID: this.cID,
-                x: depotx + (boxw / 2) ,
-                y: cushion+5,
+                x: depotx + (boxw / 2),
+                y: cushion + 5,
                 endy: depotx,
-                length: linw-10,
+                length: linw - 10,
                 deg: 90,
                 lc: "black",
                 ahfc: "black",
-				coltxt: "red",
+                coltxt: "red",
                 topstr: "Bolus Dose",
-				fixx: depotx + (boxw / 2) - 1,
-					coltxt: txtcol
+                fixx: depotx + (boxw / 2) - 1,
+                coltxt: txtcol
             })
         }
         if (circle) {
@@ -438,7 +438,7 @@ class PKPDmod {
                 bg: bgcol,
                 border: txtcol,
                 txt: centraltxt,
-					coltxt: txtcol
+                coltxt: txtcol
             })
         } else {
             this.drwBox({
@@ -452,7 +452,7 @@ class PKPDmod {
                 linewidth: 2,
                 color2: bgcol,
                 text1: centraltxt,
-					coltxt: txtcol
+                coltxt: txtcol
             })
         }
         this.drwLineTB({
@@ -466,7 +466,7 @@ class PKPDmod {
             arp: "bottom",
             txtmid: "K10",
             topstr: "",
-					coltxt: txtcol
+            coltxt: txtcol
         })
 
 
@@ -480,7 +480,7 @@ class PKPDmod {
             dash: !1,
             l: linw,
             txtmid: "K12",
-					coltxt: txtcol
+            coltxt: txtcol
         })
         this.drwLineLR({
             cID: this.cID,
@@ -492,7 +492,7 @@ class PKPDmod {
             dash: !1,
             l: linw,
             txtmid: "K21",
-					coltxt: txtcol
+            coltxt: txtcol
         })
 
         if (circle) {
@@ -503,8 +503,8 @@ class PKPDmod {
                 lw: 4,
                 bg: bgcol,
                 border: txtcol,
-                txt: centraltxt,
-					coltxt: txtcol
+                txt: peritxt1,
+                coltxt: txtcol
             })
         } else {
             this.drwBox({
@@ -517,8 +517,8 @@ class PKPDmod {
                 color1: "black",
                 linewidth: 2,
                 color2: bgcol,
-                text1: centraltxt,
-					coltxt: txtcol
+                text1: peritxt1,
+                coltxt: txtcol
             })
         }
 
@@ -532,6 +532,8 @@ class PKPDmod {
         circle = true,
         depottxt = "DEPOT",
         centraltxt = "CENTRAL",
+        peritxt1 = "PERI1",
+        peritxt2 = "PERI2",
         bgcol = "#f5f5f5",
         txtcol = "black"
     }) {
@@ -578,7 +580,7 @@ class PKPDmod {
                     width: boxw,
                     height: boxh,
                     radius: radiz,
-                    color1: txtcol,
+                    color1: "black",
                     linewidth: 2,
                     color2: bgcol,
                     text1: depottxt
@@ -608,7 +610,7 @@ class PKPDmod {
                 lw: 4,
                 bg: bgcol,
                 border: txtcol,
-                txt: centraltxt
+                txt: peritxt2
             })
         } else {
             this.drwBox({
@@ -621,7 +623,7 @@ class PKPDmod {
                 color1: "black",
                 linewidth: 2,
                 color2: bgcol,
-                text1: centraltxt
+                text1: peritxt2
             })
         }
         this.drwLineTB({
@@ -737,7 +739,7 @@ class PKPDmod {
                 lw: 4,
                 bg: bgcol,
                 border: txtcol,
-                txt: centraltxt
+                txt: peritxt1
             })
         } else {
             this.drwBox({
@@ -750,7 +752,7 @@ class PKPDmod {
                 color1: "black",
                 linewidth: 2,
                 color2: bgcol,
-                text1: centraltxt
+                text1: peritxt1
             })
         }
 
