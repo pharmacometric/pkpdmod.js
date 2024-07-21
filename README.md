@@ -41,7 +41,13 @@ circle: false })
 ### code 2
 
 ```js
-pkpd1.lib$3cmt({ depot: !0, bolus: 1, delay: true, bgcol: "white", txtcol: "blue", circle: true })
+pkpd1.lib$3cmt({ 
+depot: !0, 
+bolus: 1, 
+delay: true, 
+bgcol: "white", 
+txtcol: "blue", 
+circle: true })
 ```
 
 ### output 2
