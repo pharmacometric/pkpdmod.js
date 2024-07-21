@@ -2,14 +2,14 @@
 <html>
 <head>
   <title>Arrow in Rectangle</title>
-  <script src="https://cards.rpkg.net/assets/html2canvas.min.js" ></script>
-  <script src="https://cards.rpkg.net/assets/FileSaver.min.js" ></script>
+  <script src="https://pharmacometric.com/assets/html2canvas.min.js" ></script>
+  <script src="https://pharmacometric.com/assets/FileSaver.min.js" ></script>
 </head>
 <body>
-	<button onclick='dwnLd({cID:"test18",scale:5})'>Download A</button><button onclick='dwnLd({cID:"test9",scale:5})'>Download B</button><hr>
+	<button onclick='dwnLd({cID:"test18",scale:5})'>Download A</button><button onclick='dwnLd({cID:"test9",scale:5})'>Download B</button><button onclick='dwnLd({cID:"test10",scale:5})'>Download c</button><hr>
   <canvas id="test18" style="border:5px solid blue"></canvas>
   <canvas id="test9" style="border:3px solid red"></canvas>
-  <canvas id="test10" style="border:3px solid green"></canvas>
+  <canvas id="test10" style="border:3px solid white"></canvas>
   <canvas id="test16" style="border:1px solid #999"></canvas>
   <canvas id="test17" style="border:1px solid #669"></canvas>
   <script src="../src/pkpdmod.js" ></script>
@@ -40,7 +40,7 @@ pkpd1.lib$3cmt({
     depot: !0,
     bolus: 1,
     bgcol: "white",
-    txtcol: "green",
+    txtcol: "RED",
 	circle: false
 })
 
