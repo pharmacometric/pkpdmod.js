@@ -37,7 +37,7 @@ class PKPDmod {
         linewidth: c = 5,
         color2: n = "red",
         text1: a = "DEPOT",
-		text2: jn = "(V2)"
+		text2: jn = ""
     }) {
         var r = document.getElementById(t).getContext("2d");
         r.beginPath(), r.moveTo(e + h, l), r.arcTo(e + i, l, e + i, l + h, h), r.arcTo(e + i, l + o, e + i - h, l + o, h), r.arcTo(e, l + o, e, l + o - h, h), r.arcTo(e, l, e + h, l, h), r.closePath(), r.lineWidth = c, r.fillStyle = n, r.fill(), r.strokeStyle = s, r.stroke(), r.font = this.stytext, r.fillStyle = s, r.textAlign = this.txtloc, r.textBaseline = "middle", r.fillText(a, e + i / 2, l + i / 2), r.fillText(jn, e + i / 2, 20 +l + i / 2)
@@ -52,7 +52,7 @@ class PKPDmod {
         bg = "pink",
         border = "black",
         txt = "",
-		txt2 = "(V2)"
+		txt2 = ""
     }) {
         var canvas = document.getElementById(cID);
         var ctx = canvas.getContext("2d");
@@ -142,13 +142,14 @@ class PKPDmod {
         arp: c = "top",
         txtmid: n = "K10",
         topstr: a = "DOSE, at t = ALAG",
-        hpos: r = "left"
+        hpos: r = "left",
+		coltxt: rr = "red"
     }) {
         var d = document.getElementById(t).getContext("2d");
         let x = "left" != r ? e - 7 * n.length : e + 7 * n.length;
-        if (n.length > 0 && (d.fillStyle = "black", d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(n, x, l + i / 2)), a.length > 0) {
+        if (n.length > 0 && (d.fillStyle = rr, d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(n, x, l + i / 2),d.restore()), a.length > 0) {
             var _ = l + 10;
-            l += 17, d.fillStyle = "black", d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(a, e, _)
+            l += 17, d.fillStyle = rr, d.font = this.stytext, d.textAlign = this.txtloc, d.fillText(a, e, _),d.restore()
         }
         d.beginPath(), d.moveTo(e, l), d.lineTo(e, l + i), d.lineWidth = 2, d.strokeStyle = o, d.stroke();
         var f = e,
@@ -169,19 +170,20 @@ class PKPDmod {
         hpos: c = "up",
         txtmid: n = "CLL",
         txttop: a = "",
-        lw: r = 2
+        lw: r = 2,
+		coltxt: rr = "purple"
     }) {
     var d = document.getElementById(t).getContext("2d");
     if (((d.lineWidth = r), a.length > 0)) {
         var x = e;
-        (e += 7 * a.length), (d.fillStyle = "black"), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(a, x, l);
+        (e += 7 * a.length), (d.fillStyle = rr), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(a, x, l),d.restore();
     }
     d.beginPath(), !0 == h && d.setLineDash([5, 5]), d.moveTo(e, l), d.lineTo(i + e, l), d.stroke(), d.setLineDash([0, 0]);
     var _ = 10,
         _ = 8;
     ("right" == s) | ("both" == s) && (d.beginPath(), d.moveTo(i + e, l), d.lineTo(i + e - _, l - _), d.lineTo(i + e - _, l + _), d.closePath(), (d.fillStyle = o ? "white" : "black"), d.fill(), d.stroke()),
         ("left" == s) | ("both" == s) && (d.beginPath(), d.moveTo(e, l), d.lineTo(e + _, l - _), d.lineTo(e + _, l + _), d.closePath(), (d.fillStyle = o ? "white" : "black"), d.fill(), d.stroke()),
-        n.length > 0 && ((d.fillStyle = "black"), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(n, e + i / 2, "up" == c ? l - 10 : l + 15));
+        n.length > 0 && ((d.fillStyle = rr), (d.font = this.stytext), (d.textAlign = this.txtloc), d.fillText(n, e + i / 2, "up" == c ? l - 10 : l + 15),d.restore());
 }
 
 	
@@ -192,6 +194,8 @@ class PKPDmod {
         circle = true,
         depottxt = "DEPOT",
         centraltxt = "CENTRAL",
+		depottxt2 = "(V1)",
+        centraltxt2 = "(V2)",
         bgcol = "#f5f5f5",
         txtcol = "black"
     }) {
@@ -201,9 +205,9 @@ class PKPDmod {
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
             if (circle) {
-               this.drwcBox({ x: cushion, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: depottxt }) 
+               this.drwcBox({ x: cushion, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: depottxt, txt2: "V2",txt2: depottxt2 }) 
             } else {
-               this.drwBox({ cID: this.cID, x: cushion, y: depoty, width: boxw, height: boxh, radius: radiz, color1: txtcol, linewidth: 2, color2: bgcol, text1: depottxt })
+               this.drwBox({ cID: this.cID, x: cushion, y: depoty, width: boxw, height: boxh, radius: radiz, color1: txtcol, linewidth: 2, color2: bgcol, text1: depottxt, text2: depottxt2 })
             }
            this.drwLineLR({ cID: this.cID, x: boxw + cushion, y: 210, open: !1, arp: "right", hpos: "under", dash: !1, l: linw, txtmid: "Ka" })
 
@@ -213,11 +217,11 @@ class PKPDmod {
             this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: cushion, length: linw, lc: "black", ahfc: "white", ahbc: "black", arp: "bottom", txtmid: "", topstr: labdose })
         }
         if (circle) {
-            this.drwcBox({ x: depotx, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt })
+            this.drwcBox({ x: depotx, y: depoty, radius: boxw / 2, lw: 4, bg: bgcol, border: txtcol, txt: centraltxt, txt2: centraltxt2 })
         } else {
-            this.drwBox({ cID: this.cID, x: depotx, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt })
+            this.drwBox({ cID: this.cID, x: depotx, y: depoty, width: boxw, height: boxh, radius: radiz, color1: "black", linewidth: 2, color2: bgcol, text1: centraltxt, text2: centraltxt2 })
         }
-        this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: depoty + boxh, length: linw, lc: "black", ahfc: "black", ahbc: "black", arp: "bottom", txtmid: "K10", topstr: "" })
+        this.drwLineTB({ cID: this.cID, x: depotx + (boxw / 2), y: depoty + boxh, length: linw, lc: txtcol, ahfc: "black", ahbc: "black", arp: "bottom", txtmid: "K10", topstr: "" })
     }
 	
 	
@@ -277,7 +281,7 @@ class PKPDmod {
         labdose = "Dose",
         circle = true,
         depottxt = "DEPOT",
-        centraltxt = "CENTRAL 𝜏",
+        centraltxt = "CENTRAL",
         bgcol = "#f5f5f5",
         txtcol = "black"
     }) {
@@ -319,7 +323,7 @@ class PKPDmod {
 		
 		if (bolus) {
             depoty = cushion + linw + 19;
-            this.drwLineST({ cID: this.cID, x: cushion + 45 +  boxw/2, y: depoty - 100, endy:depotx, length: 260, deg: 55, lc: "black", ahfc: "black", topstr: "Bolus Dose" })
+            this.drwLineST({ cID: this.cID, x: cushion + 45 +  boxw/2, y: depoty - 100, endy:depotx, length: 258, deg: 55, lc: "black", ahfc: "black", topstr: "Bolus Dose" })
         }
 		
 		depoty = depoty * 2 - 15
