@@ -535,7 +535,8 @@ class PKPDmod {
         peritxt1 = "PERI1",
         peritxt2 = "PERI2",
         bgcol = "#f5f5f5",
-        txtcol = "black"
+        txtcol = "black",
+        coltxt: rr = "red"
     }) {
         let cushion = 5;
         let boxw = 150;
@@ -558,7 +559,8 @@ class PKPDmod {
                     ahbc: "black",
                     arp: "bottom",
                     txtmid: "",
-                    topstr: labdose
+                    topstr: labdose,
+                    coltxt: txtcol
                 }),
                 depotx += linw + boxw + 3;
             depoty += linw + 20;
@@ -570,7 +572,8 @@ class PKPDmod {
                     lw: 4,
                     bg: bgcol,
                     border: txtcol,
-                    txt: depottxt
+                    txt: depottxt,
+                    coltxt: txtcol
                 })
             } else {
                 this.drwBox({
@@ -583,7 +586,8 @@ class PKPDmod {
                     color1: "black",
                     linewidth: 2,
                     color2: bgcol,
-                    text1: depottxt
+                    text1: depottxt,
+                    coltxt: txtcol
                 })
             }
             this.drwLineLR({
@@ -595,7 +599,8 @@ class PKPDmod {
                 hpos: "under",
                 dash: !1,
                 l: linw,
-                txtmid: "Ka"
+                txtmid: "Ka",
+                coltxt: txtcol
             })
 
         }
@@ -610,7 +615,8 @@ class PKPDmod {
                 lw: 4,
                 bg: bgcol,
                 border: txtcol,
-                txt: peritxt2
+                txt: peritxt2,
+                coltxt: txtcol
             })
         } else {
             this.drwBox({
@@ -623,7 +629,8 @@ class PKPDmod {
                 color1: "black",
                 linewidth: 2,
                 color2: bgcol,
-                text1: peritxt2
+                text1: peritxt2,
+                coltxt: txtcol
             })
         }
         this.drwLineTB({
@@ -637,7 +644,8 @@ class PKPDmod {
             ahbc: "black",
             arp: "bottom",
             txtmid: "K31",
-            topstr: ""
+            topstr: "",
+            coltxt: txtcol
         })
         this.drwLineTB({
             cID: this.cID,
@@ -650,7 +658,8 @@ class PKPDmod {
             ahbc: "black",
             arp: "top",
             txtmid: "K13",
-            topstr: ""
+            topstr: "",
+            coltxt: txtcol
         })
 
 
@@ -663,7 +672,8 @@ class PKPDmod {
                 lw: 4,
                 bg: bgcol,
                 border: txtcol,
-                txt: centraltxt
+                txt: centraltxt,
+                coltxt: txtcol
             })
         } else {
             this.drwBox({
@@ -676,7 +686,8 @@ class PKPDmod {
                 color1: "black",
                 linewidth: 2,
                 color2: bgcol,
-                text1: centraltxt
+                text1: centraltxt,
+                coltxt: txtcol
             })
         }
         this.drwLineTB({
@@ -689,7 +700,8 @@ class PKPDmod {
             ahbc: "black",
             arp: "bottom",
             txtmid: "K10",
-            topstr: ""
+            topstr: "",
+            coltxt: txtcol
         })
 
         if (bolus) {
@@ -703,7 +715,8 @@ class PKPDmod {
                 deg: 55,
                 lc: "black",
                 ahfc: "black",
-                topstr: "Bolus Dose"
+                topstr: "Bolus Dose",
+                coltxt: txtcol
             })
         }
 
@@ -717,7 +730,8 @@ class PKPDmod {
             hpos: "up",
             dash: !1,
             l: linw,
-            txtmid: "K21"
+            txtmid: "K21",
+            coltxt: txtcol
         })
         this.drwLineLR({
             cID: this.cID,
@@ -728,7 +742,8 @@ class PKPDmod {
             hpos: "under",
             dash: !1,
             l: linw,
-            txtmid: "K12"
+            txtmid: "K12",
+            coltxt: txtcol
         })
 
         if (circle) {
@@ -739,7 +754,8 @@ class PKPDmod {
                 lw: 4,
                 bg: bgcol,
                 border: txtcol,
-                txt: peritxt1
+                txt: peritxt1,
+                coltxt: txtcol
             })
         } else {
             this.drwBox({
@@ -752,7 +768,8 @@ class PKPDmod {
                 color1: "black",
                 linewidth: 2,
                 color2: bgcol,
-                text1: peritxt1
+                text1: peritxt1,
+                coltxt: txtcol
             })
         }
 
