@@ -4,9 +4,26 @@ A lightweight and performant pharmacometric diagram builder for all purposes
 
 # example code and output
 
+### Include the script at the top of your HTML file
+
+```HTML
+
+<script src="src/pkpdmod.js" ></script>
+
+```
+
+### Create and instance of the PKPDmod class
+
+
+
+```js
+const pkpd1 = new PKPDmod("test_container");
+
+```
+
 ### code 1
 
-```{js}
+```js
 const pkpd1 = new PKPDmod("test_container");
 pkpd1.lib$3cmt({
     depot: !0,
