@@ -8,7 +8,7 @@ A lightweight and performant pharmacometric diagram builder for all purposes
 
 ```HTML
 
-<script src="src/pkpdmod.js" ></script>
+<script src="src/pkpdmod.min.js" ></script>
 
 ```
 
@@ -39,7 +39,7 @@ pkpd1.lib$3cmt({
 
 ### code 2
 
-```
+```js
 pkpd1.lib$3cmt({
     depot: !0,
     bolus: 1, bgcol: "white",
