@@ -5,6 +5,13 @@ A lightweight and performant pharmacometric diagram builder for all purposes
 
  - https://pkmodjs.pharmacometric.com/
 
+## Features
+
+- 💡 Lightweight - small and minified bundle
+- ⚡ Performant - high quality PK/PD diagrams
+- 📱 Responsive - works great on screens of all sizes
+- 🎨 Themeable - choose all colors and fonts, also highly customizable
+
 # Example code and output
 
 ### Include the script at the top of your HTML file
