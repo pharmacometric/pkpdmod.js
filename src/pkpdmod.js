@@ -158,7 +158,7 @@ class PKPDmod {
         ahfc: h,
         ahbc: s,
         arp: c = "top",
-        txtmid: n = "K10",
+        txtmid: n = "Ke",
         topstr: a = "DOSE, at t = ALAG",
         hpos: r = "left",
         coltxt: rr = "red"
@@ -335,7 +335,7 @@ class PKPDmod {
             ahfc: "black",
             ahbc: "black",
             arp: "bottom",
-            txtmid: "K10",
+            txtmid: "Ke",
             topstr: "",
             coltxt: txtcol
         })
@@ -469,7 +469,7 @@ class PKPDmod {
             ahfc: "black",
             ahbc: "black",
             arp: "bottom",
-            txtmid: "K10",
+            txtmid: "Ke",
             topstr: "",
             coltxt: txtcol
         })
@@ -711,7 +711,7 @@ class PKPDmod {
             ahfc: "black",
             ahbc: "black",
             arp: "bottom",
-            txtmid: "K10",
+            txtmid: "Ke",
             topstr: "",
             coltxt: txtcol
         })
@@ -730,7 +730,7 @@ class PKPDmod {
 				delay: delay,
                 lc: "black",
                 ahfc: "black",
-                topstr: "Bolus Dose",
+                topstr: "Dose",
                 coltxt: txtcol,
 				fixx:80+cushion + 45 + boxw / 2
             })	
@@ -745,7 +745,7 @@ class PKPDmod {
 				delay: delay,
                 lc: "black",
                 ahfc: "black",
-                topstr: "Bolus Dose",
+                topstr: "Dose",
                 coltxt: txtcol
             })
 				
