@@ -337,7 +337,8 @@ class PKPDmod {
             ahfc: "black",
             ahbc: "black",
             arp: "bottom",
-            txtmid: "CL",
+            txtmid: "CL ",
+			hpos: "right",
             topstr: "",
             coltxt: txtcol
         })
