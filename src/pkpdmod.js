@@ -11,7 +11,7 @@ function dwnLd({
     }))
 }
 class PKPDmod {
-    constructor(t, e = 600, l = 450, i = "courier", o = 18) {
+    constructor(t, e = 600, l = 450, i = "courier", o = 20) {
         this.stytext = "bold " + o + "px " + i, this.txtloc = "center", this.cID = t, this.contw = e, this.conth = l, this.setDim()
     }
     setDim() {
@@ -330,7 +330,7 @@ class PKPDmod {
 		if(delm){
 			this.drwLineTB({
             cID: this.cID,
-            x: depotx + (boxw / 2),
+            x: depotx + (boxw / 2) -15,
             y: depoty + boxh,
             length: linw,
             lc: "black",
@@ -338,6 +338,20 @@ class PKPDmod {
             ahbc: "black",
             arp: "bottom",
             txtmid: "CL",
+            topstr: "",
+            coltxt: txtcol
+        })
+		
+		this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) + 15,
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "Vmax/Km",
             topstr: "",
             coltxt: txtcol
         })
