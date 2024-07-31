@@ -383,7 +383,8 @@ class PKPDmod {
         centraltxt = "CENTRAL",
         peritxt1 = "PERI1",
         bgcol = "#f5f5f5",
-        txtcol = "black"
+        txtcol = "black",
+		delm = true
     }) {
         let cushion = 5;
         let boxw = 150;
@@ -491,6 +492,37 @@ class PKPDmod {
                 coltxt: txtcol
             })
         }
+		
+		if(delm){
+			this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) -15,
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "CL ",
+			hpos: "right",
+            topstr: "",
+            coltxt: txtcol
+        })
+		
+		this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) + 15,
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "Vmax/Km",
+            topstr: "",
+            coltxt: txtcol
+        })
+		}else{
         this.drwLineTB({
             cID: this.cID,
             x: depotx + (boxw / 2),
@@ -504,6 +536,8 @@ class PKPDmod {
             topstr: "",
             coltxt: txtcol
         })
+		
+		}
 
 
         this.drwLineLR({
@@ -573,7 +607,8 @@ class PKPDmod {
         peritxt2 = "PERI2",
         bgcol = "#f5f5f5",
         txtcol = "black",
-        coltxt: rr = "red"
+        coltxt: rr = "red",
+		delm = true
     }) {
         let cushion = 5;
         let boxw = 150;
@@ -733,6 +768,37 @@ class PKPDmod {
                 coltxt: txtcol
             })
         }
+		
+		if(delm){
+			this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) -15,
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "CL ",
+			hpos: "right",
+            topstr: "",
+            coltxt: txtcol
+        })
+		
+		this.drwLineTB({
+            cID: this.cID,
+            x: depotx + (boxw / 2) + 15,
+            y: depoty + boxh,
+            length: linw,
+            lc: "black",
+            ahfc: "black",
+            ahbc: "black",
+            arp: "bottom",
+            txtmid: "Vmax/Km",
+            topstr: "",
+            coltxt: txtcol
+        })
+		}else{
         this.drwLineTB({
             cID: this.cID,
             x: depotx + (boxw / 2),
@@ -746,6 +812,7 @@ class PKPDmod {
             topstr: "",
             coltxt: txtcol
         })
+		}
 
         if (bolus) {
             depoty = cushion + linw + 19;
