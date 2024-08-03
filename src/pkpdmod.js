@@ -103,7 +103,19 @@ class PKPDmod {
         let depotx = x + cushion;
         let depoty = y + cushion;
 		
-            
+             this.drwLineLR({
+                cID: this.cID,
+                x: depotx + cushion,
+                y: depoty + boxh/2,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka",
+                coltxt: txtcol
+            })
+			depotx = depotx + linw + 20
             if (circle) {
                 this.drwcBox({
                     x: cushion,
@@ -119,7 +131,7 @@ class PKPDmod {
             } else {
                 this.drwBox({
                     cID: this.cID,
-                    x: cushion,
+                    x: depotx,
                     y: depoty,
                     width: boxw,
                     height: boxh,
@@ -134,7 +146,7 @@ class PKPDmod {
             }
             this.drwLineLR({
                 cID: this.cID,
-                x: boxw + cushion,
+                x: depotx+boxw + cushion,
                 y: depoty + boxh/2,
                 open: !1,
                 arp: "right",
@@ -147,11 +159,22 @@ class PKPDmod {
 
         depoty = depoty + boxh + 20
         
-		
+		 this.drwLineLR({
+                cID: this.cID,
+                x: depotx - boxw + 20,
+                y: depoty + boxh/2,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka",
+                coltxt: txtcol
+            })
 		  
             if (circle) {
                 this.drwcBox({
-                    x: cushion,
+                    x: depotx,
                     y: depoty,
                     radius: boxw / 2,
                     lw: 4,
@@ -163,7 +186,7 @@ class PKPDmod {
             } else {
                 this.drwBox({
                     cID: this.cID,
-                    x: cushion,
+                    x: depotx,
                     y: depoty,
                     width: boxw,
                     height: boxh,
@@ -178,7 +201,7 @@ class PKPDmod {
             }
             this.drwLineLR({
                 cID: this.cID,
-                x: boxw + cushion,
+                x: depotx+boxw + cushion,
                 y: depoty + boxh/2,
                 open: !1,
                 arp: "right",
