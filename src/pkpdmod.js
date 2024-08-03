@@ -143,12 +143,12 @@ class PKPDmod {
         ctx1.fillRect(midX - squareSize / 2, midY - squareSize / 2, squareSize, squareSize);
         ctx1.strokeRect(midX - squareSize / 2, midY - squareSize / 2, squareSize, squareSize);
 		}
-	if(dl || mitxtl){
+	if(dl | mit){
         // Draw the text "ALAGA" to the right of the square
         var text = mit0;
         ctx1.fillStyle = rr;
         ctx1.textAlign = "right"
-        ctx1.fillText(text, midX + squareSize / 2 + 30, midY + 1);
+        ctx1.fillText(" "+text, midX + squareSize / 2 + 30, midY + 1);
 		
 		}
         ctx1.restore();
