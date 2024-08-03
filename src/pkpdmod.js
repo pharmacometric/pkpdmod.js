@@ -82,6 +82,8 @@ class PKPDmod {
         ctx.fillText(txt2, x + radius, 20 + y + radius)
         ctx.fillStyle = border;
     }
+	
+	
     drwLineST({
         cID: t,
         x: e,
@@ -97,7 +99,9 @@ class PKPDmod {
         delaybg: db = "gray",
         fixx: fx = 0,
         fixy: fy = 0,
-		delay:dl = 0
+		delay:dl = 0,
+		mitxt: mit0 = "D22",
+		mitxtl: mit = false
     }) {
         var ctx1 = document.getElementById(t).getContext("2d");
         (ctx1.fillStyle = rr), (ctx1.font = this.stytext), (ctx1.textAlign = this.txtloc), ctx1.fillText(a, e, l), ctx1.fillStyle = o;
@@ -138,9 +142,10 @@ class PKPDmod {
         ctx1.lineWidth = 1.5;
         ctx1.fillRect(midX - squareSize / 2, midY - squareSize / 2, squareSize, squareSize);
         ctx1.strokeRect(midX - squareSize / 2, midY - squareSize / 2, squareSize, squareSize);
-
+		}
+	if(dl || mitxtl){
         // Draw the text "ALAGA" to the right of the square
-        var text = "D2";
+        var text = mit0;
         ctx1.fillStyle = rr;
         ctx1.textAlign = "right"
         ctx1.fillText(text, midX + squareSize / 2 + 30, midY + 1);
