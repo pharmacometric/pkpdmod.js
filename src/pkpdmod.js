@@ -112,10 +112,10 @@ class PKPDmod {
                 hpos: "under",
                 dash: !1,
                 l: linw,
-                txtmid: "Ka",
+                txtmid: "DOSE",
                 coltxt: txtcol
             })
-			depotx = depotx + linw + 20
+			depotx = depotx + linw + 5
             if (circle) {
                 this.drwcBox({
                     x: cushion,
@@ -161,14 +161,14 @@ class PKPDmod {
         
 		 this.drwLineLR({
                 cID: this.cID,
-                x: depotx - boxw + 20,
+                x: depotx - linw,
                 y: depoty + boxh/2,
                 open: !1,
                 arp: "right",
                 hpos: "under",
                 dash: !1,
                 l: linw,
-                txtmid: "Ka",
+                txtmid: "DOSE",
                 coltxt: txtcol
             })
 		  
