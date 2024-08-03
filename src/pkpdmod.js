@@ -144,17 +144,20 @@ class PKPDmod {
                     coltxt: txtcol
                 })
             }
-            this.drwLineLR({
+            this.drwLineST({
                 cID: this.cID,
-                x: depotx+boxw + cushion,
-                y: depoty + boxh/2,
-                open: !1,
-                arp: "right",
-                hpos: "under",
-                dash: !1,
-                l: linw,
-                txtmid: "Ka",
-                coltxt: txtcol
+                x: depotx+boxw,
+                y: depoty + boxh/2 -10,
+                endy: depotx,
+                length: linw*1.2,
+                deg: 30,
+                lc: "black",
+                ahfc: "black",
+                coltxt: "red",
+                topstr: "",
+                fixx: depotx + (boxw / 2) - 1,
+                coltxt: txtcol,
+				delm : true
             })
 
         depoty = depoty + boxh + 20
@@ -199,17 +202,21 @@ class PKPDmod {
                     coltxt: txtcol
                 })
             }
-            this.drwLineLR({
+            
+			this.drwLineST({
                 cID: this.cID,
-                x: depotx+boxw + cushion,
-                y: depoty + boxh/2,
-                open: !1,
-                arp: "right",
-                hpos: "under",
-                dash: !1,
-                l: linw,
-                txtmid: "Ka2",
-                coltxt: txtcol
+                x: depotx+boxw,
+                y: depoty + boxh/2 -10,
+                endy: depotx,
+                length: linw*1.2,
+                deg: -30,
+                lc: "black",
+                ahfc: "black",
+                coltxt: "red",
+                topstr: "",
+                fixx: depotx + (boxw / 2) - 1,
+                coltxt: txtcol,
+				delm : true
             })
 
 		
