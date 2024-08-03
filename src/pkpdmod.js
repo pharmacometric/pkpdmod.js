@@ -89,9 +89,11 @@ class PKPDmod {
 		circle = false,
 		labdose = "DOSE",
 		txtcol = "red",
-		bgcol = "green",
+		bgcol = "white",
 		depottxt = "DEPOT1",
-		depottxt2 = "DEPOT1"
+		depottxt2 = "(0)",
+		depottxt3 = "DEPOT2",
+		depottxt4 = "(1)"
 	}){
 		let cushion = 5;
         let boxw = 150;
@@ -133,7 +135,7 @@ class PKPDmod {
             this.drwLineLR({
                 cID: this.cID,
                 x: boxw + cushion,
-                y: y + boxh/2,
+                y: depoty + boxh/2,
                 open: !1,
                 arp: "right",
                 hpos: "under",
@@ -143,8 +145,50 @@ class PKPDmod {
                 coltxt: txtcol
             })
 
+        depoty = depoty + boxh + 20
         
-        
+		
+		  
+            if (circle) {
+                this.drwcBox({
+                    x: cushion,
+                    y: depoty,
+                    radius: boxw / 2,
+                    lw: 4,
+                    bg: bgcol,
+                    txt: depottxt3,
+                    txt2: depottxt4,
+                    coltxt: txtcol
+                })
+            } else {
+                this.drwBox({
+                    cID: this.cID,
+                    x: cushion,
+                    y: depoty,
+                    width: boxw,
+                    height: boxh,
+                    radius: radiz,
+                    color1: "black",
+                    linewidth: 2,
+                    color2: bgcol,
+                    text1: depottxt3,
+                    text2: depottxt4,
+                    coltxt: txtcol
+                })
+            }
+            this.drwLineLR({
+                cID: this.cID,
+                x: boxw + cushion,
+                y: depoty + boxh/2,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka2",
+                coltxt: txtcol
+            })
+
 		
 	}
 	
