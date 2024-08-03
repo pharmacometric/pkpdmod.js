@@ -100,7 +100,7 @@ class PKPDmod {
         fixx: fx = 0,
         fixy: fy = 0,
 		delay:dl = 0,
-		mitxt: mit0 = "D22",
+		mitxt: mit0 = "D2",
 		mitxtl: mit = false
     }) {
         var ctx1 = document.getElementById(t).getContext("2d");
@@ -147,8 +147,8 @@ class PKPDmod {
         // Draw the text "ALAGA" to the right of the square
         var text = mit0;
         ctx1.fillStyle = rr;
-        ctx1.textAlign = "right"
-        ctx1.fillText(" "+text, midX + squareSize / 2 + 30, midY + 1);
+        ctx1.textAlign = "left"
+        ctx1.fillText(text, midX + squareSize / 2 + 10, midY + 1);
 		
 		}
         ctx1.restore();
