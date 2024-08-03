@@ -83,6 +83,70 @@ class PKPDmod {
         ctx.fillStyle = border;
     }
 	
+	dualDepot({
+		x = 0,
+		y = 0,
+		circle = false,
+		labdose = "DOSE",
+		txtcol = "red",
+		bgcol = "green",
+		depottxt = "DEPOT1",
+		depottxt2 = "DEPOT1"
+	}){
+		let cushion = 5;
+        let boxw = 150;
+        let boxh = 150;
+        let linw = 120;
+        let radiz = 6;
+        let depotx = x + cushion;
+        let depoty = y + cushion;
+		
+            
+            if (circle) {
+                this.drwcBox({
+                    x: cushion,
+                    y: depoty,
+                    radius: boxw / 2,
+                    lw: 4,
+                    bg: bgcol,
+                    txt: depottxt,
+                    txt2: "V2",
+                    txt2: depottxt2,
+                    coltxt: txtcol
+                })
+            } else {
+                this.drwBox({
+                    cID: this.cID,
+                    x: cushion,
+                    y: depoty,
+                    width: boxw,
+                    height: boxh,
+                    radius: radiz,
+                    color1: "black",
+                    linewidth: 2,
+                    color2: bgcol,
+                    text1: depottxt,
+                    text2: depottxt2,
+                    coltxt: txtcol
+                })
+            }
+            this.drwLineLR({
+                cID: this.cID,
+                x: boxw + cushion,
+                y: y + boxh/2,
+                open: !1,
+                arp: "right",
+                hpos: "under",
+                dash: !1,
+                l: linw,
+                txtmid: "Ka",
+                coltxt: txtcol
+            })
+
+        
+        
+		
+	}
 	
     drwLineST({
         cID: t,
@@ -277,7 +341,7 @@ class PKPDmod {
             this.drwLineLR({
                 cID: this.cID,
                 x: boxw + cushion,
-                y: 210,
+                y: depoty + boxh/2,
                 open: !1,
                 arp: "right",
                 hpos: "under",
@@ -443,7 +507,7 @@ class PKPDmod {
             this.drwLineLR({
                 cID: this.cID,
                 x: boxw + cushion,
-                y: 210,
+                y: depoty + boxh/2,
                 open: !1,
                 arp: "right",
                 hpos: "under",
