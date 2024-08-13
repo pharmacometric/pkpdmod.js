@@ -82,7 +82,6 @@ class PKPDmod {
         ctx.fillText(txt2, x + radius, 20 + y + radius)
         ctx.fillStyle = border;
     }
-	
 	dualDepot({
 		x = 0,
 		y = 0,
@@ -219,6 +218,30 @@ class PKPDmod {
 				delm : true
             })
 
+		
+	}
+	
+	oneDepot({
+		x = 0,
+		y = 0,
+		circle = false,
+		labdose = "DOSE",
+		txtcol = "red",
+		bgcol = "white",
+		depottxt = "DEPOT1",
+		depottxt2 = "(0)",
+		depottxt3 = "DEPOT2",
+		depottxt4 = "(1)"
+	}){
+		let cushion = 5;
+        let boxw = 150;
+        let boxh = 150;
+        let linw = 120;
+        let radiz = 6;
+        let depotx = x + cushion;
+        let depoty = y + cushion;
+		
+		
 		
 	}
 	
