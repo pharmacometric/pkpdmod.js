@@ -773,61 +773,25 @@ class PKPDmod {
         this.setDim();
 
         if (depot) {
-            this.drwLineTB({
-                    cID: this.cID,
-                    x: depotx + (boxw / 2),
-                    y: depoty,
-                    length: linw,
-                    lc: "black",
-                    ahfc: "white",
-                    ahbc: "black",
-                    arp: "bottom",
-                    txtmid: "",
-                    topstr: labdose,
-                    coltxt: txtcol
-                }),
-                depotx += linw + boxw + 3;
-            depoty += linw + 20;
-            if (circle) {
-                this.drwcBox({
-                    x: cushion,
-                    y: depoty,
-                    radius: boxw / 2,
-                    lw: 4,
-                    bg: bgcol,
-                    border: "black",
-                    txt: depottxt,
-					txt2: "",
-                    coltxt: txtcol
-                })
-            } else {
-                this.drwBox({
-                    cID: this.cID,
-                    x: cushion,
-                    y: depoty,
-                    width: boxw,
-                    height: boxh,
-                    radius: radiz,
-                    color1: "black",
-                    linewidth: 2,
-                    color2: bgcol,
-                    text1: depottxt,
-					text2: "",
-                    coltxt: txtcol
-                })
-            }
-            this.drwLineLR({
-                cID: this.cID,
-                x: boxw + cushion,
-                y: depoty + boxh / 2,
-                open: !1,
-                arp: "right",
-                hpos: "under",
-                dash: !1,
-                l: linw,
-                txtmid: "Ka",
-                coltxt: txtcol
-            })
+           let depotadd = this.oneDepot({
+			cID: this.cID,
+			x: depotx,
+			y: depoty,
+			boxw: boxw,
+			boxh: boxh,
+			linw: linw,
+			radiz: radiz,
+			circle: circle,
+			labdose: "DOSE",
+			txtcol: txtcol,
+			bgcol: bgcol,
+			depottxt: "DEPOT1",
+			depottxt2: "(0)",
+			cushion: cushion
+		});
+		
+		depotx = depotadd[0];
+		depoty = depotadd[1];
 
         }
 
