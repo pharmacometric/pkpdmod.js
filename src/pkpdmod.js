@@ -243,7 +243,7 @@ class PKPDmod {
 		this.drwLineTB({
                     cID: cID,
                     x: depotx + (boxw / 2),
-                    y: cushion,
+                    y: y,
                     length: linw,
                     lc: "black",
                     ahfc: "white",
