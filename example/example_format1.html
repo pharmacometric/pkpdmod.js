@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Compartment PK Model</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+        #canvas-container {
+            display: inline-block;
+            margin: 20px;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Three Compartment PK Model</h1>
+    <div id="canvas-container">
+        <canvas id="pkCanvas"></canvas>
+    </div>
+
+    <script>
+        class PKModel {
+            constructor(canvasId, compartments, arrows, options = {}) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.compartments = compartments;
+                this.arrows = arrows;
+
+                // Options with default values
+                this.arrowColor = options.arrowColor || 'green';
+                this.arrowLength = options.arrowLength || 60; // Default arrow length
+                this.compartmentShape = options.compartmentShape || 'circle'; // 'circle' or 'square'
+                this.compartmentSize = options.compartmentSize || 100; // Compartment size, default to 100px
+                this.textColor = options.textColor || 'black'; // Default text color (black)
+                this.padding = 50; // Padding for the canvas container
+
+                // Calculate canvas size to fit everything
+                this.calculateCanvasSize();
+                this.setCanvasSize();
+            }
+
+            // Calculate the bounding box for the diagram
+            calculateCanvasSize() {
+                const minX = Math.min(...this.compartments.map(c => c.x - this.arrowLength));
+                const maxX = Math.max(...this.compartments.map(c => c.x + this.arrowLength + this.compartmentSize));
+                const minY = Math.min(...this.compartments.map(c => c.y - this.arrowLength));
+                const maxY = Math.max(...this.compartments.map(c => c.y + this.arrowLength + this.compartmentSize));
+
+                // Set the width and height based on the diagram's boundaries
+                this.width = maxX - minX + this.padding * 2;
+                this.height = maxY - minY + this.padding * 2;
+            }
+
+            // Set the canvas size and the canvas container size
+            setCanvasSize() {
+                this.canvas.width = this.width;
+                this.canvas.height = this.height;
+
+                // Adjust the container size
+                const container = document.getElementById('canvas-container');
+                container.style.width = this.width + 'px';
+                container.style.height = this.height + 'px';
+
+                // Translate the context to add padding space
+                this.ctx.translate(this.padding, this.padding);
+            }
+
+            // Function to draw an arrow with optional label
+            drawArrow(fromX, fromY, toX, toY, label = "") {
+                const headlen = 10; // Length of the arrowhead
+                const angle = Math.atan2(toY - fromY, toX - fromX);
+
+                this.ctx.beginPath();
+                this.ctx.moveTo(fromX, fromY);
+                this.ctx.lineTo(toX, toY);
+                this.ctx.strokeStyle = this.arrowColor; // Custom arrow color
+                this.ctx.lineWidth = 2;
+                this.ctx.stroke();
+
+                // Draw the arrowhead
+                this.ctx.beginPath();
+                this.ctx.moveTo(toX, toY);
+                this.ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+                this.ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+                this.ctx.lineTo(toX, toY);
+                this.ctx.fillStyle = this.arrowColor; // Arrowhead fill color
+                this.ctx.fill();
+
+                // Draw the label on the arrow
+                if (label) {
+                    const midX = (fromX + toX) / 2;
+                    const midY = (fromY + toY) / 2;
+                    this.ctx.fillStyle = this.textColor; // Custom text color
+                    this.ctx.font = '16px Arial';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+                    this.ctx.fillText(label, midX, midY);
+                }
+            }
+
+            // Function to draw a compartment (either square or circle)
+            drawCompartment(x, y, name, color) {
+                const radius = this.compartmentSize / 2; // For circle
+                const size = this.compartmentSize; // For square
+
+                if (this.compartmentShape === 'circle') {
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+                    this.ctx.fillStyle = color; // Fill with specified color
+                    this.ctx.fill();
+                    this.ctx.lineWidth = 2;
+                    this.ctx.strokeStyle = 'green'; // Green border for compartments
+                    this.ctx.stroke();
+                } else if (this.compartmentShape === 'square') {
+                    const offset = size / 2;
+                    this.ctx.beginPath();
+                    this.ctx.rect(x - offset, y - offset, size, size);
+                    this.ctx.fillStyle = color;
+                    this.ctx.fill();
+                    this.ctx.lineWidth = 2;
+                    this.ctx.strokeStyle = 'green'; // Green border for square compartments
+                    this.ctx.stroke();
+                }
+
+                // Draw compartment label with custom text color
+                this.ctx.fillStyle = this.textColor; // Custom text color
+                this.ctx.font = '16px Arial';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillText(name, x, y);
+            }
+
+            // Function to calculate the edge points of the circles/squares for arrows
+            getEdgePoint(x, y, radius, angle) {
+                return {
+                    x: x + radius * Math.cos(angle),
+                    y: y + radius * Math.sin(angle)
+                };
+            }
+
+            // Method to create the diagram with the compartments and arrows
+            draw() {
+                // Draw each compartment at the specified x, y position
+                this.compartments.forEach(compartment => {
+                    this.drawCompartment(compartment.x, compartment.y, compartment.name, compartment.color);
+                });
+
+                // Draw arrows between compartments
+                this.arrows.forEach(arrow => {
+                    const fromCompartment = this.compartments.find(comp => comp.name === arrow.from);
+                    const toCompartment = this.compartments.find(comp => comp.name === arrow.to);
+
+                    const angle = Math.atan2(toCompartment.y - fromCompartment.y, toCompartment.x - fromCompartment.x);
+                    const fromEdge = this.getEdgePoint(fromCompartment.x, fromCompartment.y, this.compartmentSize / 2, angle);
+                    const toEdge = this.getEdgePoint(toCompartment.x, toCompartment.y, this.compartmentSize / 2, angle);
+
+                    this.drawArrow(fromEdge.x, fromEdge.y, toEdge.x, toEdge.y, arrow.label); // Draw compartment-to-compartment arrows
+
+                    // Custom arrow from "Compartment 2" to the right
+                    if (arrow.label === "Ke") {
+                        const fromX = fromCompartment.x + this.compartmentSize / 2; // Right edge of Compartment 2
+                        const fromY = fromCompartment.y;
+                        const toX = fromX + 300; // Arrow length is 300px
+                        const toY = fromY;
+
+                        this.drawArrow(fromX, fromY, toX, toY, "Ke"); // Draw the "Ke" labeled arrow
+                    }
+                });
+            }
+        }
+
+        // Example call for a PK Model with compartments and arrows
+        const pkModel = new PKModel('pkCanvas', [
+            { name: 'Depot', color: 'red', x: 150, y: 100 }, // "Depot" compartment
+            { name: 'Compartment 1', color: 'black', x: 250, y: 300 }, // "Compartment 1" positioned 200px higher than Compartment 2
+            { name: 'Compartment 2', color: 'blue', x: 400, y: 100 }, // "Compartment 2"
+            { name: 'Compartment 3', color: 'lightgray', x: 525, y: 300 } // "Compartment 3" positioned 200px higher than Compartment 2 and light gray
+        ], [
+            { from: 'Depot', to: 'Compartment 2', label: 'Ka' }, // Arrow between "Depot" and "Compartment 2" with label 'Ka'
+            { from: 'Compartment 1', to: 'Compartment 2', label: 'K12' }, // Arrow between "Compartment 1" and "Compartment 2" with label 'K12'
+            { from: 'Compartment 3', to: 'Compartment 2', label: 'K32' }, // Arrow between "Compartment 3" and "Compartment 2" with label 'K32'
+            { from: 'Compartment 2', to: 'Compartment 2', label: 'Ke' } // Add custom "Ke" arrow protruding from the right edge of "Compartment 2"
+        ], {
+            arrowColor: 'purple', // Custom arrow color
+            arrowLength: 70, // Custom arrow length
+            compartmentShape: 'square', // Square compartments instead of circles
+            compartmentSize: 150, // Each compartment is 150px
+            textColor: 'violet' // Custom text color (violet)
+        });
+
+        // Call the draw method to render the diagram
+        pkModel.draw();
+    </script>
+</body>
+</html>
